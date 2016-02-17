@@ -1,0 +1,40 @@
+{
+	"familiy":[
+Adiantaceae / Adiantacées
+Amaranthaceae / Amarantacées
+Anacardiaceae / Anacardiacées
+Betulaceae / Bétulacées
+Bombacaceae / Bombacacées
+Boraginaceae / Boraginacées
+Brassicaceae / Brassicacées
+Campanulaceae / Campanulacées
+Capparaceae / Capparacées
+Compositae / Composées, Astéracées
+Convolvulaceae / Convolvulacées
+Cucurbitaceae / Cucurbitacées
+Ericaceae / Ericacées
+Grossulariaceae / Grossulariacées
+Lamiaceae / Lamiacées
+Leguminosae / Légumineuses
+Malvaceae / Malvacées
+Menispermaceae / Ménispermacées
+Moraceae / Moracées
+Oxalidaceae / Oxalidacées
+Papaveraceae / Papaveracées
+Poaceae / Poacées
+Ranunculaceae / Ranunculacées
+Rosaceae / Rosacées
+Sapindaceae / Sapindacées 
+Scrophulariaceae / Scrophulariacées
+Solanaceae / Solanacées
+		"apiaceae":{
+			"fr":"apiacées"
+		},
+		"asparagaceae":{
+			"fr":"asparagacées"
+		},
+		"liliaceae":{
+			"fr":"liliacées"
+		},
+	]
+}

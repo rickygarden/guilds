@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.node {
+	opacity: .8;
+	stroke: #fff;
+	stroke-width: 1px;
+}
+.node:hover {
+	opacity: 1;
+}
+
+
+.link {
+  stroke: #999;
+  stroke-opacity: .2;
+	stroke-width: 1px;
+}
+
+.label {
+  pointer-events: none;
+  font: 8px sans-serif;
+}
+</style>
+<body>
+<script type="text/javascript" src="d3.v3.js"></script>
+
+<script>
+
+var width = 500,
+    height = 500;
+
+var color = d3.scale.category20();
+
+var force = d3.layout.force()
+	.charge(-500)
+	.chargeDistance(500)
+    //.gravity(function(d) { return d.affinity/20 })
+    .gravity(1)
+    .linkDistance(20)
+    // length of the link
+    .linkStrength(function(d) { return d.affinity/12 })
+    .size([width, height]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.json("guilds.json", function(error, graph) {
+  if (error) throw error;
+
+	force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start();
+
+	var link = svg.selectAll(".link")
+		.data(graph.links)
+		.enter().append("line")
+		.attr("class", "link")
+
+	// Create the groups under svg
+	var gnodes = svg.selectAll('g.gnode')
+		.data(graph.nodes)
+		.enter()
+		.append('g')
+		.classed('gnode', true);
+
+
+	// Add one circle in each group
+	var node = gnodes.append("circle")
+		.attr("class", "node")
+		.attr("r", function(d) { return d.size*50; })
+		.attr("radius", function(d) { return d.size*10; })
+		.style("fill", function(d) { return color(d.group); })
+		.call(force.drag);
+
+	// Append the labels to each group
+	var label = gnodes.append("text")
+		.attr("dx", "1.5em")
+		.attr("dy", ".5em")
+		.attr("class", "label")
+	.text(function(d) { 
+			return d.name; 
+		});
+
+	//console.log(label);
+
+	force.on("tick", function() {
+		link.attr("x1", function(d) { return d.source.x; })
+		.attr("y1", function(d) { return d.source.y; })
+		.attr("x2", function(d) { return d.target.x; })
+		.attr("y2", function(d) { return d.target.y; });
+
+		gnodes.attr("transform", function(d) { 
+			return 'translate(' + [d.x, d.y] + ')';
+		});
+	});
+	function mouseup() {
+		if (mousedown_node) {
+			// hide drag line
+			drag_line
+			  .attr("class", "drag_line_hidden")
+
+			if (!mouseup_node) {
+				// add node
+				var point = d3.mouse(this),
+					node = {x: point[0], y: point[1]},
+					n = nodes.push(node);
+
+				// select new node
+				selected_node = node;
+				selected_link = null;
+
+				// add link to mousedown node
+				links.push({source: mousedown_node, target: node});
+			}
+			redraw();
+		}
+		// clear mouse event vars
+		resetMouseVars();
+	}
+
+});
+
+</script>
