@@ -1,0 +1,39 @@
+{
+	"_latin_name": {
+		"lang": {
+			"fr": "french name",
+			"en": "english name"
+		},
+		"type": {
+			"aromatic": "[0-1]",
+			"ornemental": "[0-1]"
+		},
+		"climat": {
+			"zone": "[1-9]",
+			"water": "[1-3] 1:raindrop 0-3” (7.5cm), 2:raindrops 4”-7” (10-18cm), 3:raindrops 8”-11” (20-28cm)",
+			"light": "[1-3] 1:shade, 2:part sun, 3:full sun"
+		},
+		"attributes": {
+			"height": "[1-9][0-9]*\\s?(cm|m|in|ft)",
+			"width": "[1-9][0-9]*\\s?(cm|m|in|ft)"
+		}
+	},
+	"ocimum basilicum":	{
+		"lang": {
+			"fr": "basilic"
+		},
+		"type": {
+			"aromatic": 1,
+			"ornemental": 0
+		},
+		"climat": {
+			"zone": 5,
+			"water": 1,
+			"light": 3
+		},
+		"attributes": {
+			"height": "20cm",
+			"width": "20cm"
+		}
+	}
+}
